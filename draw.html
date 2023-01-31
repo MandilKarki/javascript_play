@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="myCanvas"></canvas>
+
+<script>
+const canvas = document.getElementById("myCanvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const shapeWidth = 100;
+const shapeHeight = 100;
+
+let shape = "rectangle";
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const x = Math.floor(Math.random() * (canvas.width - shapeWidth));
+  const y = Math.floor(Math.random() * (canvas.height - shapeHeight));
+
+  ctx.beginPath();
+  if (shape === "rectangle") {
+    ctx.rect(x, y, shapeWidth, shapeHeight);
+  } else {
+    ctx.arc(x + shapeWidth / 2, y + shapeHeight / 2, shapeWidth / 2, 0, 2 * Math.PI);
+  }
+  ctx.fillStyle = randomColor();
+  ctx.fill();
+  ctx.closePath();
+
+  shape = shape === "rectangle" ? "circle" : "rectangle";
+}
+
+function randomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function randomColor() {
+  return `rgb(${randomNumber(0, 255)}, ${randomNumber(0, 255)}, ${randomNumber(0, 255)})`;
+}
+
+setInterval(draw, 500);
+</script>
+
+</body>
+</html>
+<!-- Here is the explanation of each line of code:
+
+    <!DOCTYPE html>: This is a declaration of the type of document being used. It indicates that this is an HTML document.
+
+    <html>: This is the start of an HTML document.
+
+    <head>: This is the head section of the HTML document. The head section contains information about the document, such as the
+         title and style, but does not contain the content of the document.
+
+    <style>: This section of the head contains the styles for the document. In this case, it sets the margin and padding of 
+        the body to 0.
+
+    <body>: This is the body section of the HTML document. This section contains the content of the document.
+
+    <canvas id="myCanvas"></canvas>: This creates a canvas element in the HTML document with the ID myCanvas.
+
+    const canvas = document.getElementById("myCanvas");: This line of code uses the getElementById method to get the canvas 
+    element with the ID myCanvas and assigns it to the constant canvas.
+
+    const ctx = canvas.getContext("2d");: This line of code creates a 2D rendering context for the canvas and assigns it to
+     the constant ctx.
+
+    canvas.width = window.innerWidth;: This line of code sets the width of the canvas to the inner width of the window.
+
+    canvas.height = window.innerHeight;: This line of code sets the height of the canvas to the inner height of the window.
+
+    const shapeWidth = 100;: This line of code creates a constant named shapeWidth with a value of 100. This value is used as the
+     width of the rectangle and the diameter of the circle.
+
+    const shapeHeight = 100;: This line of code creates a constant named shapeHeight with a value of 100. This value is used as the
+     height of the rectangle.
+
+    let shape = "rectangle";: This line of code creates a variable named shape with a value of "rectangle". This variable is used to
+     determine whether the current shape to be drawn is a rectangle or a circle.
+
+    function draw() {: This line of code starts the definition of the draw function. This function is used to draw the rectangles
+         and circles on the canvas.
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);: This line of code uses the clearRect method of the ctx object to clear the 
+    entire canvas.
+
+    const x = Math.floor(Math.random() * (canvas.width - shapeWidth));: This line of code creates a constant named x with a random
+     value between 0 and canvas.width - shapeWidth. This value is used as the x-coordinate of the top-left corner of the rectangle
+      or the x-coordinate of the center of the circle.
+
+    const y = Math.floor(Math.random() * (canvas.height - shapeHeight));: This line of code creates a constant named y with a random
+     value between 0 and canvas.height - shapeHeight. -->
+
+
+     <!--     const canvas = document.getElementById("myCanvas"); - this line retrieves the canvas element from the HTML document using
+       its ID "myCanvas".
+
+    const ctx = canvas.getContext("2d"); - this line creates a 2D rendering context for the canvas.
+
+    canvas.width = window.innerWidth; and canvas.height = window.innerHeight; - this sets the canvas width and height to the size of 
+    the browser window.
+
+    const shapeWidth = 100; and const shapeHeight = 100; - this sets the constant width and height of the shapes that will be 
+    drawn on the canvas.
+
+    let shape = "rectangle"; - this sets a variable shape to "rectangle" which determines the type of shape to be drawn on the canvas.
+
+    function draw() { - this is a function that will be called every 500ms to redraw the shapes on the canvas.
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height); - this line clears the entire canvas so that the shapes are drawn fresh every
+     time the function is called.
+
+    const x = Math.floor(Math.random() * (canvas.width - shapeWidth)); and const y = Math.floor(Math.random() * (canvas.height - shapeHeight)); -
+     this generates random x and y coordinates for the shapes to be drawn on the canvas.
+
+    ctx.beginPath(); - this starts a new path for the shapes to be drawn on.
+
+    if (shape === "rectangle") { ctx.rect(x, y, shapeWidth, shapeHeight); } - this line checks if the shape is a rectangle and draws
+     it if it is.
+
+    else { ctx.arc(x + shapeWidth / 2, y + shapeHeight / 2, shapeWidth / 2, 0, 2 * Math.PI); } - this line draws an arc (circle) 
+    if the shape is not a rectangle.
+
+    ctx.fillStyle = randomColor(); - this sets the fill style of the shape to a random color generated by the randomColor() function.
+
+    ctx.fill(); - this fills the shape with the fill style set in the previous step.
+
+    ctx.closePath(); - this closes the path for the shapes.
+
+    shape = shape === "rectangle" ? "circle" : "rectangle"; - this line sets the shape variable to either "circle" or "rectangle" 
+    alternatively to draw different shapes on the canvas.
+
+    function randomNumber(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; } - this function generates a random
+     number between a given minimum and maximum value.
+
+    function randomColor() { return rgb(${randomNumber(0, 255)}, ${randomNumber(0, 255)}, ${randomNumber(0, 255)}); } - this function
+     generates a random RGB color value.
+
+    setInterval(draw, 500); - this line sets the interval for calling the draw() function every 500ms to redraw the shapes on the
+     canvas. -->
